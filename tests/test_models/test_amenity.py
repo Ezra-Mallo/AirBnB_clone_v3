@@ -10,6 +10,10 @@ from models import amenity
 from models.base_model import BaseModel
 import pep8
 import unittest
+# Add the warnings module to ignore FutureWarning messages
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 Amenity = amenity.Amenity
 
 
@@ -31,7 +35,7 @@ class TestAmenityDocs(unittest.TestCase):
         """Test that tests/test_models/test_amenity.py conforms to PEP8."""
         pep8s = pep8.StyleGuide(quiet=True)
         result = pep8s.check_files(['tests/test_models/test_amenity.py'])
-        self.assertEqual(result.total_errors, 1,
+        self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
     def test_amenity_module_docstring(self):
@@ -104,4 +108,3 @@ class TestAmenity(unittest.TestCase):
         amenity = Amenity()
         string = "[Amenity] ({}) {}".format(amenity.id, amenity.__dict__)
         self.assertEqual(string, str(amenity))
-
