@@ -46,8 +46,6 @@ def global_error_handler(err):
     if isinstance(err, HTTPException):
         if type(err).__name__ == 'NotFound':
             err.description = "Not found"
-            return make_response(jsonify({"error": "Not Found"}, 404))
-
         message = {'error': err.description}
         code = err.code
     else:
